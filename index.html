@@ -874,7 +874,7 @@ window.addEventListener('beforeprint', function() {
         </div>
         <div class="contact-item">
           <div class="contact-label">E-mail</div>
-          <div class="contact-value">pop092026&#64;gmail&#46;com</div>
+          <div class="contact-value"><span class="em-addr"></span></div>
         </div>
         <div class="contact-item">
           <div class="contact-label">地址</div>
@@ -897,7 +897,7 @@ window.addEventListener('beforeprint', function() {
           </div>
           <div class="contact-item" style="flex:1;min-width:140px;">
             <div class="contact-label">E-mail</div>
-            <div class="contact-value">pop092026&#64;gmail&#46;com</div>
+            <div class="contact-value"><span class="em-addr"></span></div>
           </div>
           <div class="contact-item" style="flex:1;min-width:100px;">
             <div class="contact-label">地址</div>
@@ -1341,8 +1341,19 @@ window.addEventListener('beforeprint', function() {
 </div>
 
 <footer>
-  <strong>王師綾</strong> &nbsp;·&nbsp; 人力資源規劃人員（績效管理及人力規劃） &nbsp;·&nbsp; pop092026&#64;gmail&#46;com &nbsp;·&nbsp; 0983-461-119
+  <strong>王師綾</strong> &nbsp;·&nbsp; 人力資源規劃人員（績效管理及人力規劃） &nbsp;·&nbsp; <span class="em-addr"></span> &nbsp;·&nbsp; 0983-461-119
 </footer>
 
+
+<script>
+(function(){
+  var u='pop092026';
+  var d='gmail.com';
+  var full = u + '@' + d;
+  document.querySelectorAll('.em-addr').forEach(function(el){
+    el.textContent = full;
+  });
+})();
+</script>
 </body>
 </html>
