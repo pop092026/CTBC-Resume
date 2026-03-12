@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>王師綾 | 人力資源規劃人員</title>
+<title>王師綾 | 人資專員</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -664,6 +664,57 @@
     .pref-grid { grid-template-columns: 1fr 1fr; }
     .bio-content { grid-template-columns: 1fr; gap: 32px; }
   }
+
+  /* ── 手機版 (≤600px) ── */
+  @media (max-width: 600px) {
+    /* Nav */
+    nav > div { padding: 0 16px !important; flex-wrap: wrap; height: auto !important; padding-top: 8px !important; padding-bottom: 8px !important; }
+    nav > div > div { display: none !important; }
+    nav > div > span { font-size: 12px !important; }
+    nav > div > button { font-size: 10px !important; padding: 6px 12px !important; }
+
+    /* Hero */
+    .hero > div { padding: 24px 16px !important; }
+
+    /* 上排：照片+姓名+聯絡框 → 改成兩排 */
+    #contact-row { display: none !important; }
+
+    /* 聯絡資訊改到簡介下方 3欄 */
+    .hero-summary { margin-bottom: 16px !important; }
+
+    /* APPLICATION 框全寬 */
+    #application-box { width: 100% !important; box-sizing: border-box !important; }
+
+    /* 下排改成直排 */
+    .hero > div > div:last-child { flex-direction: column !important; gap: 12px !important; }
+
+    /* 手機聯絡資訊區塊 */
+    .mobile-contacts { display: flex !important; }
+
+    main { padding: 0 16px !important; }
+
+    /* 工作經歷 */
+    .exp-item { grid-template-columns: 1fr !important; }
+    .exp-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .exp-company { font-size: 17px !important; }
+    .task-subs { padding-left: 16px !important; }
+
+    /* 證照 */
+    .certs-grid { grid-template-columns: 1fr !important; }
+
+    /* 技能 */
+    .skills-grid { grid-template-columns: 1fr !important; }
+
+    /* 專案成就 */
+    .project-card { flex-direction: column !important; }
+    .project-img { width: 100% !important; height: 180px !important; }
+
+    /* 學歷 */
+    div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+
+    section { padding: 24px 0 !important; }
+    .section-title { font-size: 20px !important; }
+  }
 </style>
 
 <style>
@@ -771,7 +822,7 @@
         </div>
         <div class="contact-item">
           <div class="contact-label">E-mail</div>
-          <div class="contact-value">pop092026@gmail.com</div>
+          <div class="contact-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5f2f302f6f666d6f6d691f38323e3633713c3032">[email&#160;protected]</a></div>
         </div>
         <div class="contact-item">
           <div class="contact-label">地址</div>
@@ -786,6 +837,21 @@
         <p>具備 4 年招募、訓練、績效、員工關係等人力資源實務經驗。</p>
         <p>善於統籌規劃各式活動，帶領跨部門專案小組執行落地。</p>
         <p>心思細膩且擅於觀察，得即時掌握需求並協助問題處理。</p>
+        <!-- 手機版聯絡資訊 -->
+        <div class="mobile-contacts" style="display:none;gap:8px;margin-top:12px;flex-wrap:wrap;">
+          <div class="contact-item" style="flex:1;min-width:100px;">
+            <div class="contact-label">手機</div>
+            <div class="contact-value">0983-461-119</div>
+          </div>
+          <div class="contact-item" style="flex:1;min-width:140px;">
+            <div class="contact-label">E-mail</div>
+            <div class="contact-value">pop092026@gmail.com</div>
+          </div>
+          <div class="contact-item" style="flex:1;min-width:100px;">
+            <div class="contact-label">地址</div>
+            <div class="contact-value">新北市土城區</div>
+          </div>
+        </div>
       </div>
       <!-- 應徵框：用 JS 對齊聯絡框寬度 -->
       <div id="application-box" style="padding:12px 16px;background:rgba(201,168,76,0.08);border-left:3px solid var(--gold);flex-shrink:0;box-sizing:border-box;">
@@ -802,7 +868,7 @@
   <div class="scroll-indicator"><div class="scroll-line"></div></div>
 </header>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // 讓 APPLICATION 框與上方聯絡框同寬
 (function() {
   function alignWidth() {
@@ -1225,8 +1291,4 @@
   </a>
 </div>
 
-<footer>
-  <strong>王師綾</strong> &nbsp;·&nbsp; 人力資源規劃人員(績效管理及人力規劃) &nbsp;·&nbsp; pop092026@gmail.com &nbsp;·&nbsp; 0983-461-119
-</footer>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts
+<
