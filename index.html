@@ -63,8 +63,8 @@
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 32px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.2s forwards;
+    opacity:1;
+    
   }
 
   .hero-name {
@@ -74,8 +74,8 @@
     line-height: 1;
     letter-spacing: -1px;
     margin-bottom: 8px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.4s forwards;
+    opacity:1;
+    
   }
 
   .hero-name span {
@@ -90,15 +90,15 @@
     color: rgba(255,255,255,0.65);
     margin-top: 20px;
     margin-bottom: 48px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.6s forwards;
+    opacity:1;
+    
   }
 
   .hero-summary {
     border-left: 2px solid var(--gold);
     padding-left: 20px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.8s forwards;
+    opacity:1;
+    
   }
 
   .hero-summary p {
@@ -124,8 +124,8 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 1s forwards;
+    opacity:1;
+    
   }
 
   .contact-item {
@@ -165,8 +165,8 @@
     flex-direction: column;
     align-items: center;
     gap: 8px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 1.4s forwards;
+    opacity:1;
+    
     z-index: 2;
   }
 
@@ -181,11 +181,11 @@
     width: 1px;
     height: 48px;
     background: linear-gradient(to bottom, var(--gold), transparent);
-    animation: scrollLine 2s ease-in-out infinite;
+    
   }
 
   @keyframes scrollLine {
-    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    0%, 100% { opacity:1.4; transform: scaleY(1); }
     50% { opacity: 1; transform: scaleY(1.3); }
   }
 
@@ -647,7 +647,7 @@
 
   /* ANIMATIONS */
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity:1; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
@@ -724,16 +724,16 @@
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
-    animation: none !important;
+    
     transition: none !important;
   }
-  [style*="opacity:0"] { opacity: 1 !important; }
-  [style*="opacity: 0"] { opacity: 1 !important; }
+  [style*="opacity:1"] { opacity: 1 !important; }
+  [style*="opacity:1"] { opacity: 1 !important; }
 
   body { background: #f2f2f0 !important; margin: 0; padding: 0; }
   main { padding: 0 16px !important; max-width: 100% !important; }
 
-  /* Hero - 保持現有 block 結構，只縮緊 padding */
+  /* Hero - 大幅壓縮高度 */
   .hero {
     min-height: 0 !important;
     height: auto !important;
@@ -741,10 +741,19 @@
     border-bottom: 2px solid #c9a84c !important;
     page-break-after: avoid;
   }
-  .hero > div { padding: 20px 24px !important; }
+  .hero > div { padding: 10px 24px !important; }
+  .hero-top { margin-bottom: 6px !important; }
+  .hero-bottom { gap: 8px !important; }
+  #application-box { padding: 8px 12px !important; }
+  .hero-summary { padding: 6px 10px !important; }
 
-  /* 強制顯示所有 opacity:0 的元素 */
+  /* 強制顯示所有動畫元素 */
   .hero-summary, .hero-summary p { opacity: 1 !important; }
+  [style*="opacity:1"], [style*="opacity:1"] { opacity: 1 !important; transform: none !important; }
+  .project-card { opacity: 1 !important; transform: none !important; }
+  .project-card img { opacity: 1 !important; }
+  .exp-item, .edu-card { opacity: 1 !important; }
+  * {  transition: none !important; }
 
   /* 姓名縮小 */
   .hero-name { font-size: 28px !important; line-height: 1.1 !important; }
@@ -759,11 +768,11 @@
   .contact-value { font-size: 11px !important; }
 
   /* 各 section */
-  section { padding: 14px 0 !important; border-bottom: 1px solid #d8d0c4 !important; }
+  section { padding: 14px 0 !important; border-bottom: 1px solid #d8d0c4 !important; break-inside: auto !important; }
   section:last-child { border-bottom: none !important; }
 
   /* 工作經歷 */
-  .exp-item { grid-template-columns: 110px 1fr !important; gap: 10px !important; margin-bottom: 16px !important; padding-bottom: 16px !important; }
+  .exp-item { grid-template-columns: 110px 1fr !important; gap: 10px !important; margin-bottom: 16px !important; padding-bottom: 16px !important; break-inside: auto !important; }
   .exp-company { font-size: 16px !important; }
   .exp-role { font-size: 12px !important; margin-bottom: 8px !important; }
   .task-category { font-size: 12px !important; }
@@ -775,12 +784,55 @@
   .skills-grid { grid-template-columns: repeat(3, 1fr) !important; }
   .certs-grid { grid-template-columns: repeat(3, 1fr) !important; }
 
-  /* 專案成就圖片縮小 */
+  /* 專案成就 - 每個 project card 不要被截斷 */
+  .project-card { break-inside: avoid !important; page-break-inside: avoid !important; }
   .project-img { height: 100px !important; width: 140px !important; }
+
+  /* 自傳段落不要被截斷 */
+  .bio-text p { break-inside: avoid !important; orphans: 3 !important; widows: 3 !important; }
+
+  /* section header 不要單獨留在頁底 */
+  .section-header { break-after: avoid !important; page-break-after: avoid !important; }
+
+  /* 學歷區塊壓縮 */
+  #education { padding: 8px 0 !important; }
+  #education .section-header { margin-bottom: 8px !important; }
+  .edu-card-inner { padding: 8px 10px !important; }
+  .edu-school { font-size: 15px !important; }
+  .edu-dept { font-size: 11px !important; }
+  .edu-date { font-size: 10px !important; }
+  .edu-badge { font-size: 9px !important; }
+
+  /* 工作經歷不強制新頁，緊接在學歷後 */
+  #experience { break-before: auto !important; page-break-before: auto !important; padding-top: 8px !important; }
+
+  /* 專案成就上方空白問題 - 移除 opacity animation 殘留 */
+  #projects, #projects * { opacity: 1 !important; transform: none !important; }
+  .project-card, .project-card * { opacity: 1 !important; transform: none !important; }
 
   @page { margin: 8mm 10mm; size: A4; }
 }
 </style>
+
+<script>
+window.addEventListener('beforeprint', function() {
+  // Force all animated/hidden elements visible
+  document.querySelectorAll('*').forEach(function(el) {
+    var style = el.getAttribute('style') || '';
+    if (style.includes('opacity:1') || style.includes('opacity:1')) {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+      el.style.animation = 'none';
+    }
+  });
+  // Also force project cards and images
+  document.querySelectorAll('.project-card, .project-card img, [style*="animation"]').forEach(function(el) {
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+    el.style.animation = 'none';
+  });
+});
+</script>
 </head>
 <body>
 
@@ -806,10 +858,10 @@
   <div style="max-width:960px;margin:0 auto;padding:36px 40px;width:100%;box-sizing:border-box;position:relative;z-index:1;">
 
     <!-- 上排：照片 ＋ 姓名Rita ＋ 聯絡框 -->
-    <div style="display:flex;align-items:center;gap:24px;margin-bottom:16px;opacity:0;animation:fadeUp 0.8s ease 0.3s forwards;">
+    <div style="display:flex;align-items:center;gap:24px;margin-bottom:16px;opacity:1;">
       <img src="data:image/jpeg;base64,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" style="width:72px;height:72px;border-radius:50%;object-fit:cover;object-position:center 15%;border:3px solid #d0cec9;flex-shrink:0;">
       <div style="flex:1;">
-        <h1 class="hero-name" style="font-size:clamp(24px,3.5vw,40px);margin-bottom:0;opacity:1;animation:none;line-height:1.1;">
+        <h1 class="hero-name" style="font-size:clamp(24px,3.5vw,40px);margin-bottom:0;opacity:1;line-height:1.1;">
           <span style="color:#3d4f63;">王師綾</span>
           <span style="font-family:'Nunito',sans-serif;font-size:clamp(14px,1.8vw,20px);color:var(--gold);padding-left:10px;vertical-align:middle;">Rita</span>
         </h1>
@@ -822,7 +874,7 @@
         </div>
         <div class="contact-item">
           <div class="contact-label">E-mail</div>
-          <div class="contact-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5f2f302f6f666d6f6d691f38323e3633713c3032">[email&#160;protected]</a></div>
+          <div class="contact-value">pop092026&#64;gmail&#46;com</div>
         </div>
         <div class="contact-item">
           <div class="contact-label">地址</div>
@@ -832,7 +884,7 @@
     </div>
 
     <!-- 下排：簡介 ＋ 應徵框（與聯絡框等寬對齊） -->
-    <div style="display:flex;align-items:flex-start;gap:24px;opacity:0;animation:fadeUp 0.8s ease 0.6s forwards;">
+    <div style="display:flex;align-items:flex-start;gap:24px;opacity:1;">
       <div class="hero-summary" style="margin:0;flex:1;">
         <p>具備 4 年招募、訓練、績效、員工關係等人力資源實務經驗。</p>
         <p>善於統籌規劃各式活動，帶領跨部門專案小組執行落地。</p>
@@ -845,7 +897,7 @@
           </div>
           <div class="contact-item" style="flex:1;min-width:140px;">
             <div class="contact-label">E-mail</div>
-            <div class="contact-value">pop092026@gmail.com</div>
+            <div class="contact-value">pop092026&#64;gmail&#46;com</div>
           </div>
           <div class="contact-item" style="flex:1;min-width:100px;">
             <div class="contact-label">地址</div>
@@ -868,7 +920,7 @@
   <div class="scroll-indicator"><div class="scroll-line"></div></div>
 </header>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // 讓 APPLICATION 框與上方聯絡框同寬
 (function() {
   function alignWidth() {
@@ -1285,10 +1337,12 @@
 </main>
 
 <div style="text-align:center;padding:40px 0 20px;background:var(--cream);">
-  <a href="#top" style="display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:#3d4f63;color:#fff;text-decoration:none;font-family:'Nunito',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;border-radius:2px;transition:background 0.2s;"
-    onmouseover="this.style.background='#c9a84c'" onmouseout="this.style.background='#3d4f63'">
-    ↑ &nbsp;回到最上方
-  </a>
+  <a href="#top" style="display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:#3d4f63;color:#fff;text-decoration:none;font-family:'Nunito',sans-serif;font-size;font-size:11px;font-weight:600;letter-spacing:2px;cursor:pointer;transition:background 0.3s;" onmouseover="this.style.background='#c9a84c'" onmouseout="this.style.background='#3d4f63'">↑ 回到最上方</a>
 </div>
 
-<
+<footer>
+  <strong>王師綾</strong> &nbsp;·&nbsp; 人力資源規劃人員（績效管理及人力規劃） &nbsp;·&nbsp; pop092026&#64;gmail&#46;com &nbsp;·&nbsp; 0983-461-119
+</footer>
+
+</body>
+</html>
